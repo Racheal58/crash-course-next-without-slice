@@ -9,7 +9,15 @@
 
       const repoName = "without-slice-machine";
       const endpoint = prismic.getEndpoint(repoName);
-      const client = prismic.createClient(endpoint);
+
+      const routes = [
+        // Update to match your website's URL structure
+        { type: "page", path: "/:uid" },
+        { type: "homepage", path: "/home" },
+        { type: "blog_po", path: "/blog" },
+      ];
+
+      const client = prismic.createClient(endpoint, { routes });
 
       const init = async () => {
         const prismicDoc = await client.getFirst();
